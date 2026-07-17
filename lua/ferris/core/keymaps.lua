@@ -8,19 +8,24 @@ local map = u.map
 map("n", "<leader>q", "<cmd>q!<CR>", { silent = true, desc = "Quit force" })
 map("n", "<leader>w", "<cmd>w<CR>", { silent = true, desc = "Save file" })
 
--- Clipboard
-local clipboard_enabled = true
+vim.g.clipboard = {
+	name = "osc52-custom",
+	copy = {
+		["+"] = require("vim.ui.clipboard.osc52").copy("+"),
+		["*"] = require("vim.ui.clipboard.osc52").copy("*"),
+	},
+	paste = {
+		["+"] = function()
+			return vim.fn.split(vim.fn.getreg('"'), "\n")
+		end,
+		["*"] = function()
+			return vim.fn.split(vim.fn.getreg('"'), "\n")
+		end,
+	},
+}
+
+vim.opt.clipboard = ""
 vim.opt.clipboard = "unnamedplus"
-map("n", "<leader>ce", function()
-	clipboard_enabled = not clipboard_enabled
-	if clipboard_enabled then
-		vim.opt.clipboard = "unnamedplus"
-		vim.notify("Clipboard: system (+)")
-	else
-		vim.opt.clipboard = ""
-		vim.notify("Clipboard: Neovim default")
-	end
-end, { desc = "Toggle system clipboard" })
 
 -- Visual
 map("v", "J", ":m '>+1<CR>gv=gv", { silent = true, desc = "Move selection down" })
