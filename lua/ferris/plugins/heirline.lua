@@ -126,7 +126,8 @@ return {
 				return vim.fn.mode() == "n" and #kb_state.keys > 0
 			end,
 			provider = function()
-				return " " .. table.concat(kb_state.keys, "") .. " "
+				local keys = table.concat(kb_state.keys, ""):gsub("%%", "%%%%")
+				return " " .. keys .. " "
 			end,
 			hl = { fg = "cyan", bg = "bright_bg", bold = true },
 		}
