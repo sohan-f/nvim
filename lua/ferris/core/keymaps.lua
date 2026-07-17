@@ -5,7 +5,6 @@ local u = require("ferris.utils")
 local map = u.map
 
 -- Basic
-map("i", "jj", "<Esc>", { desc = "Escape insert" })
 map("n", "<leader>q", "<cmd>q!<CR>", { silent = true, desc = "Quit force" })
 map("n", "<leader>w", "<cmd>w<CR>", { silent = true, desc = "Save file" })
 
