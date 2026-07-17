@@ -25,7 +25,6 @@ vim.g.clipboard = {
 }
 
 vim.opt.clipboard = ""
-vim.opt.clipboard = "unnamedplus"
 
 -- Visual
 map("v", "J", ":m '>+1<CR>gv=gv", { silent = true, desc = "Move selection down" })
@@ -33,6 +32,16 @@ map("v", "K", ":m '<-2<CR>gv=gv", { silent = true, desc = "Move selection up" })
 map("v", "<", "<gv", { silent = true, desc = "Indent left" })
 map("v", ">", ">gv", { silent = true, desc = "Indent right" })
 map("x", "p", [["_dP]], { silent = true, desc = "Paste without yanking" })
+
+-- Delete without yanking
+map("n", "d", '"_d', { silent = true, desc = "Delete without yank" })
+map("n", "D", '"_D', { silent = true, desc = "Delete to EOL without yank" })
+map("n", "x", '"_x', { silent = true, desc = "Delete char without yank" })
+map("n", "c", '"_c', { silent = true, desc = "Change without yank" })
+
+-- Explicit clipboard yank
+map("n", "<leader>y", '"+y', { desc = "Yank to clipboard" })
+map("v", "<leader>y", '"+y', { desc = "Yank to clipboard" })
 
 -- Search
 map("n", "n", "nzzzv", { desc = "Next result (centered)" })
@@ -51,12 +60,12 @@ map("n", "<leader>bo", "<cmd>BufferLineCloseOthers<cr>", { desc = "Close Other B
 -- Diagnostics
 map("n", "<leader>dg", vim.diagnostic.open_float, { desc = "Line diagnostics" })
 
---Terminal runner
+-- Terminal runner
 map("n", "<leader>ut", function()
 	u.run("", "interactive")
 end, { desc = "Interactive terminal" })
 
--- cli nav
+-- CLI nav
 local wildmenu_keys = {
 	["<Up>"] = 'wildmenumode() ? "\\<Left>"  : "\\<Up>"',
 	["<Down>"] = 'wildmenumode() ? "\\<Right>" : "\\<Down>"',
