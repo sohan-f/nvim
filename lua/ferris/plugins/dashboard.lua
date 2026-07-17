@@ -54,14 +54,17 @@ return {
 				vertical_center = true,
 				center = {
 					button("f", "Find File", function()
-						Snacks.picker.files()
+						require("telescope.builtin").find_files()
 					end, ""),
 					button("r", "Recent Files", function()
-						Snacks.picker.recent()
+						require("telescope.builtin").oldfiles()
 					end, ""),
 					button("n", "New File", "ene | startinsert", ""),
 					button("c", "Config", function()
-						Snacks.picker.files({ cwd = vim.fn.stdpath("config"), hidden = true })
+						require("telescope.builtin").find_files({
+							cwd = vim.fn.stdpath("config"),
+							hidden = true,
+						})
 					end, ""),
 					button("l", "Lazy", "Lazy", "󰒲"),
 					button("q", "Quit", "qa", ""),
