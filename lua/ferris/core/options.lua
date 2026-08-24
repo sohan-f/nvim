@@ -55,11 +55,7 @@ opt.backspace = { "start", "eol", "indent" }
 -- Wrap
 opt.wrap = false
 opt.linebreak = false
-
--- Shell / Cmd
-opt.shell = "zsh"
-opt.wildmenu = true
-opt.wildmode = "full"
+vim.opt.breakindent = false
 
 -- Highlight
 local function set_hl()

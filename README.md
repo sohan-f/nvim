@@ -12,7 +12,7 @@ A modern, highly optimized, and modular Neovim configuration written entirely in
 
 *   **Native Neovim 0.10+ LSP Loading**: Uses Neovim's native `vim.lsp.enable(...)` instead of bulky and heavy management plugins. Raw server configuration modules reside in `lsp/` and are autoloaded dynamically.
 *   **Ultra-Fast Completion**: Powered by `blink.cmp` (the lightweight, lightning-fast modern successor to `nvim-cmp`) featuring custom fuzzy search tuning, signature help, and elegant rounded borders.
-*   **Clipboard Isolation**: Standard deletions (`d`, `D`, `x`, `c` in Normal/Visual) target the black-hole register (`"_`) to protect your clipboard from pollution. Explicit copy operations are done via `<leader>y`, utilizing **OSC 52** for robust, native system clipboard sync across local, remote (SSH), and multiplexed (tmux) terminals.
+*   **Clipboard Isolation**: Standard deletions (`d`, `D`, `x`, `c` in Normal/Visual) target the black-hole register (`"_`) to protect your clipboard from pollution. Explicit copy operations are done via `<leader>y`, utilizing **unnamedplus** for robust, native system clipboard sync across local, remote (SSH), and multiplexed (tmux) terminals.
 *   **Persistent & Re-usable Terminal Runner**: Features a custom non-blocking terminal runner in `lua/ferris/utils.lua` that tracks open interactive instances. This prevents window clutter and allows launching, focusing, and interactive execution (Cargo run, build, test, NPM start, etc.) in a single shared buffer.
 *   **Dynamic UI Adjustments**: Adapts to your environment with features like viewport-relative dynamic scrolloff adjustment on resize and custom rounded UI boundaries.
 
@@ -43,7 +43,7 @@ The configuration is modularly split to ensure simplicity and clean separation o
         ├── core/              # Core configuration
         │   ├── autocmd.lua    # Highlight-on-yank, global autocommands
         │   ├── init.lua       # Bootstrap core modules
-        │   ├── keymaps.lua    # Global keymaps, OSC 52, clipboard configuration
+        │   ├── keymaps.lua    # Global keymaps, unnamedplus, clipboard configuration
         │   └── options.lua    # Global vim.opt settings, diagnostic styling
         └── plugins/           # Individual, self-contained lazy.nvim specifications
             ├── blink.lua      # Completion engine
@@ -93,7 +93,7 @@ The configuration is modularly split to ensure simplicity and clean separation o
 *   `<leader>dg`: Open floating line diagnostics.
 *   `<leader>ut`: Toggle or focus custom background interactive Terminal.
 
-### 2. Clipboard Sync (OSC 52)
+### 2. Clipboard Sync (unnamedplus)
 *   `<leader>y` (Normal & Visual): Explicitly Copy selection to the System Clipboard.
 *   `d` / `D` / `x` / `c`: Standard deletions (No clipboard pollution).
 *   `p` (Visual): Paste without overwriting your current register contents.
@@ -170,7 +170,7 @@ mv ~/.cache/nvim ~/.cache/nvim.bak
 ### 3. Clone and Setup Ferris
 Clone this repository to Neovim's user configuration directory:
 ```bash
-git clone https://github.com/sohan-f/nvim-config.git ~/.config/nvim
+git clone https://github.com/sohan-f/nvim.git ~/.config/nvim
 ```
 
 ### 4. Launch and Autoinstall

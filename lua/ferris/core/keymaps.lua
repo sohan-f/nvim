@@ -8,19 +8,21 @@ local map = u.map
 map("n", "<leader>q", "<cmd>q!<CR>", { silent = true, desc = "Quit force" })
 map("n", "<leader>w", "<cmd>w<CR>", { silent = true, desc = "Save file" })
 
+map("n", "<leader>uw", function()
+	vim.opt.wrap = not vim.opt.wrap:get()
+	vim.opt.breakindent = vim.opt.wrap:get()
+	vim.opt.linebreak = vim.opt.wrap:get()
+end, { desc = "Toggle Word Wrap" })
+
 vim.g.clipboard = {
-	name = "osc52-custom",
+	name = "termux-clipboard",
 	copy = {
-		["+"] = require("vim.ui.clipboard.osc52").copy("+"),
-		["*"] = require("vim.ui.clipboard.osc52").copy("*"),
+		["+"] = "termux-clipboard-set",
+		["*"] = "termux-clipboard-set",
 	},
 	paste = {
-		["+"] = function()
-			return vim.fn.split(vim.fn.getreg('"'), "\n")
-		end,
-		["*"] = function()
-			return vim.fn.split(vim.fn.getreg('"'), "\n")
-		end,
+		["+"] = "termux-clipboard-get",
+		["*"] = "termux-clipboard-get",
 	},
 }
 
