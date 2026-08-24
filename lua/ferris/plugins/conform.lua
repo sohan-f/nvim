@@ -7,7 +7,6 @@ return {
 			python = { "isort", "black" },
 			rust = { "rustfmt" },
 			javascript = { "prettierd", "prettier", stop_after_first = true },
-			["*"] = { "codespell" },
 			["_"] = { "trim_whitespace" },
 		},
 		format_on_save = {
